@@ -34,10 +34,22 @@ cipher = {
     '.': '%' 
 }
 
-encrypted_file = open("encrypted_message_one.txt", 'r')
+with open("encrypted_message_one.txt", 'r') as f:
+    encrypted_message = f.readline()
 
-encrypted_message = encrypted_file.readline()
-
-encrypted_file.close()
+print(encrypted_message)
 
 # Write code below
+reverse_cipher = {v:k for k,v in cipher.items()}
+
+decrypted_message = ''
+# Loop chacters in message and check if the character is within the 
+# reverse_cipher. If it is, add the reverse value to the string. If it is not,
+# add the current character.
+for c in encrypted_message:
+    if c in reverse_cipher:
+        decrypted_message += reverse_cipher[c]
+    else:
+        decrypted_message += c
+
+print(decrypted_message)
